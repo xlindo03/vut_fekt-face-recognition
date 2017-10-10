@@ -1,5 +1,6 @@
 import face_recognition
 from scipy.misc.common import face
+import time
 
 #import img
 bohuslav_sobotka_img = face_recognition.load_image_file("./know_faces/bohuslav_sobotka.jpg")
@@ -23,9 +24,15 @@ know_faces = [leos_mares_encoding,
 
 for i in range(1,6):
     print("Obrazek číslo: ",i)
+    start_time = time.time()
+
     unknow_image = face_recognition.load_image_file("./unknow_faces/{numb}.jpg".format(numb=i))
     unknow_face_encoding = face_recognition.face_encodings(unknow_image)[0]
     results = face_recognition.compare_faces(know_faces, unknow_face_encoding)
+
+    stop_time=time.time()
+    duration=stop_time-start_time
+    print(int(round(duration*1000.0)),"ms")
 
     print("Je to leos? {}".format(results[0]))
     print("Je to jaromir? {}".format(results[1]))
