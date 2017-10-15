@@ -13,7 +13,7 @@ import cv2
 video_capture = cv2.VideoCapture(0)
 
 #nahrani zname osoby
-me_know_image = face_recognition.load_image_file("./know_faces/leos_mares.jpg")
+me_know_image = face_recognition.load_image_file("./know_faces/me.jpg")
 me_face_encoding = face_recognition.face_encodings(me_know_image)[0]
 
 #pole
@@ -26,11 +26,11 @@ process_this_frame = True
 while True:
     ret, frame = video_capture.read()  # detekuje kazdy frame
 
-    small_frame = cv2.resize(frame, (0,0), fx=0.25, fy=0.25)        #zmenci kazdy snimek
+    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)        #zmenci kazdy snimek
 
     if process_this_frame:
         face_locations = face_recognition.face_locations(small_frame)       #lokalizace obliceje na snimku
-        face_encodings = face_recognition.face_encodings(small_frame)
+        face_encodings = face_recognition.face_encodings(small_frame, face_locations)
 
         face_names = []
         for face_encoding in face_encodings:
