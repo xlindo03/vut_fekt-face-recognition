@@ -82,7 +82,7 @@ while True:
 
 
     #info panel
-    cv2.putText(frame, "DETEKOVANYCH OBLICEJU: {}".format(len(face_locations),face_names), (10, 10), cv2.FONT_HERSHEY_PLAIN, 0.6, (255, 255, 255))
+    cv2.putText(frame, "DETEKOVANYCH OBLICEJU: {}".format(len(face_locations)), (10, 10), cv2.FONT_HERSHEY_PLAIN, 0.6, (255, 255, 255))
     cv2.putText(frame, "SOURADNICE OBLICEJU: {}".format(face_locations), (10, 20), cv2.FONT_HERSHEY_PLAIN, 0.6, (255, 255, 255))
     cv2.putText(frame, "CAS VYPOCTU: {} ms".format(int(round(duration*1000.0))), (10, 30), cv2.FONT_HERSHEY_PLAIN, 0.6, (255, 255, 255))
 
