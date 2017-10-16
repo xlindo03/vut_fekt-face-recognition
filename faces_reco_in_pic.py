@@ -2,12 +2,17 @@ import face_recognition
 from scipy.misc.common import face
 import time
 
-from funkce.funcs import boolAnoNe
+from funkce import *
+
+
+
 
 #import img
 bohuslav_sobotka_img = face_recognition.load_image_file("./know_faces/bohuslav_sobotka.jpg")
 jaromir_jagr_img = face_recognition.load_image_file("./know_faces/jaromir_jagr.jpg")
 leos_mares_img = face_recognition.load_image_file("./know_faces/leos_mares.jpg")
+
+
 
 
 
@@ -31,6 +36,7 @@ for i in range(1,6):
 
     unknow_image = face_recognition.load_image_file("./unknow_faces/{}.jpg".format(i))
 
+    #face_recognition.face_locations(image,model="hog") hog => CPU | cnn => GPU
     face_locations = face_recognition.face_locations(unknow_image) # vrati souradnice v poli [(top, left, bottom, right),(...)]
 
     start_time = time.time()
