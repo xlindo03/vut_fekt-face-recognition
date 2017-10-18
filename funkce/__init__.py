@@ -1,2 +1,2 @@
 
-from .funcs import boolAnoNe
+from .funcs import boolAnoNe, get_size
