@@ -1,0 +1,9 @@
+﻿Při vytváření 250x250 tváří tak pomoci FR v defaulním nastavení (HOG derektor) se chybně detekovaly 3 snímky (z rozlišení 3264x2448). Tyto snímky jsou uložené ve složce 250x250_dlib_hog
+
+Face Recognition
+3264x2448	-> pouze obličej 250x250 = 3 špatně, 0 nedetekovaných
+1632x1224 	-> pouze obličej 250x250 = 1 špatně, 0 nedetekovaných
+816x612 	-> pouze obličej 250x250 = 1 špatně, 1 nedetekovaný
+408x306		-> pouze obličej 250x250 = 1 špatně, 0 nedetekovaných
+204x153 	-> pouze obličej 250x250 = 0 špatně, 3 nedetekované
+102x76 		-> pouze obličej 250x250 = 1 špatně, 8 nedetekovaných

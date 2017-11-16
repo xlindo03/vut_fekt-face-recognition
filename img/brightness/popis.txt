@@ -1,0 +1,3 @@
+brightness/150/204x153
+
+150 - je velikost brightness nastavená v Irfanview 4.50
