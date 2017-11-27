@@ -3,30 +3,30 @@ from numpy.ma.core import array
 from scipy.misc.common import face
 import time
 from os import walk
-
+import csv
 from funkce import *
 
 
 import dlib
 
+dir_list = []
 
-
-dir3264 = "size/3264x2448/"
+dir3264 = "rgb/3264x2448/"
 dir3264_list = []
 
-dir1632 = "size/1632x1224/"
+dir1632 = "rgb/1632x1224/"
 dir1632_list = []
 
-dir816 = "size/816x612/"
+dir816 = "rgb/816x612/"
 dir816_list = []
 
-dir408 = "size/408x306/"
+dir408 = "rgb/408x306/"
 dir408_list = []
 
-dir204 = "size/204x153/"
+dir204 = "rgb/204x153/"
 dir204_list = []
 
-dir102 = "size/102x76/"
+dir102 = "rgb/102x76/"
 dir102_list = []
 
 arnold = "arnold_schwarzenegger_"
@@ -41,10 +41,10 @@ sylvester_list = []
 vin = "vin_diesel_"
 vin_list = []
 
-know_img1 = "./size/arnold_schwarzenegger.jpg"
-know_img2 = "./size/dwayne_johnson.jpg"
-know_img3 = "./size/sylvester_stallone.jpg"
-know_img4 = "./size/vin_diesel.jpg"
+know_img1 = "./rgb/arnold_schwarzenegger.jpg"
+know_img2 = "./rgb/dwayne_johnson.jpg"
+know_img3 = "./rgb/sylvester_stallone.jpg"
+know_img4 = "./rgb/vin_diesel.jpg"
 
 #dir3264
 for (dirpath, dirnames, filenames) in walk(dir3264):
@@ -69,6 +69,21 @@ for (dirpath, dirnames, filenames) in walk(dir204):
 #dir102
 for (dirpath, dirnames, filenames) in walk(dir102):
     dir102_list.extend(filenames)
+
+#nacteni CSV souboru
+with open("csv.csv","r") as my_csv:
+    #csvWriter = csv.writer(my_csv,delimiter=',')
+    csvReader = csv.reader(my_csv, delimiter='\n')
+    raw_list = []
+    for row in csvReader:
+        #print(', '.join(row))
+        raw_list.extend(row)
+
+for i,x in enumerate(raw_list):
+    if i > 0:
+        dir_list.append(x)
+
+
 
 start = time.time()
 load_know_img1 = face_recognition.load_image_file(know_img1)
@@ -119,6 +134,13 @@ start = time.time()
 encoding_know_img1 = face_recognition.face_encodings(face_location_know_img4)
 print("Encoding IMG4: {}".format(start-time.time()))
 
+
+#############
+
+for dir in dir_list:
+    print(dir)
+
+#############
 
 print("3264x2448")
 for img in dir3264_list:
