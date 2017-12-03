@@ -28,20 +28,18 @@ openfaceModelDir = os.path.join(modelDir, 'openface')
 
 
 def getRep(imgPath):
-    print("Processing {}.".format(imgPath))
     bgrImg = cv2.imread(imgPath)
     if bgrImg is None:
-        raise Exception("Unable to load image: {}".format(imgPath))
+        raise Exception("Nelze nahrat img: {}".format(imgPath))
     rgbImg = cv2.cvtColor(bgrImg, cv2.COLOR_BGR2RGB)
 
     bb = align.getLargestFaceBoundingBox(rgbImg)
     if bb is None:
-        raise Exception("Unable to find a face: {}".format(imgPath))
+        raise Exception("Nenalezeny oblicej: {}".format(imgPath))
 
-    alignedFace = align.align(96, rgbImg, bb,
-                              landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
+    alignedFace = align.align(96, rgbImg, bb, landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
     if alignedFace is None:
-        raise Exception("Unable to align image: {}".format(imgPath))
+        raise Exception("Img nelze zarovnat: {}".format(imgPath))
 
     rep = net.forward(alignedFace)
 
